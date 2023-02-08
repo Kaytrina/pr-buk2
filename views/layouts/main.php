@@ -49,7 +49,7 @@ $id_user=Yii::$app->user->id;
             ($items = [
                 ['label' => 'О нас', 'url' => ['/site/about']],
                 ['label' => 'Обратная связь', 'url' => ['/site/contact']],
-                ['label' => 'Заявления', 'url' => ['/claim/index']],
+                ['label' => 'Заявления', 'url' => ['/claim/index?ClaimSearch[id_user]='.$id_user]],
                 ['label' => 'Личный кабинет', 'url' => ['/user/view?id_user='.$id_user]],
             ]);
 

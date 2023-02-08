@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Claim;
 use app\models\ClaimSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -73,8 +74,9 @@ class ClaimController extends Controller
         if ($this->request->isPost) {
             $model->load($this->request->post());
 
+            $model->id_user = Yii::$app->user->identity->id_user;
             $model->photo_before=UploadedFile::getInstance($model,'photo_before');
-            $file_name='/claimImage/' . \Yii::$app->getSecurity()->generateRandomString(50). '.' . $model->photo_before->extension;
+            $file_name='/claimPic/' . \Yii::$app->getSecurity()->generateRandomString(50). '.' . $model->photo_before->extension;
             $model->photo_before->saveAs(\Yii::$app->basePath . $file_name);
             $model->photo_before=$file_name;
 

@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
     $li[$category->id_cat]=$category->name;
     }?>
 
+
 <div class="claim-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -27,7 +28,9 @@ use yii\widgets\ActiveForm;
     <br>
     <?= $form->field($model, 'photo_before')->fileInput() ?>
     <br>
-    <?= $form->field($model, 'photo_after')->fileInput() ?>
+    <?= Yii::$app->user->identity->is_admin==1 ? $form->field($model, 'photo_after')->fileInput() : ''?>
+
+    <?= Yii::$app->user->identity->is_admin==1 ? $form->field($model, 'status')->textInput(['maxlength' => true]): '' ?>
 
     <div class="form-group">
         <br><?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
